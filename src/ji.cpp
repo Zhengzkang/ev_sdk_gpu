@@ -65,7 +65,7 @@ JiErrorCode ji_get_version(char *pVersion)
 
 JiErrorCode ji_init(int argc, char **argv)
 {
-    std::system("cd /project/train/src_repo/yolov5 && python export.py --weights /usr/local/ev_sdk/model/train/exp/weights/best.pt --simplify")
+    std::system("cd /project/train/src_repo/yolov5 && python export.py --weights /usr/local/ev_sdk/model/train/exp/weights/best.pt --include onnx --simplify");
     // 根据实际情况对SDK进行初始化，如授权功能
     return JISDK_RET_SUCCEED;
 }
