@@ -34,6 +34,10 @@ void SampleDetector::loadOnnx(const std::string strModelName)
     nvonnxparser::IParser* parser = nvonnxparser::createParser(*network, gLogger);
     parser->parseFromFile(strModelName.c_str(), static_cast<int>(ILogger::Severity::kWARNING));
     IBuilderConfig* config = builder->createBuilderConfig();
+    //FP16
+    if(builder->platformHasFastFp16()){
+        config->setFlag(BuilderFlag::kFP16);
+    }
     config->setMaxWorkspaceSize(1ULL << 30);    
     m_CudaEngine = builder->buildEngineWithConfig(*network, *config);    
 
