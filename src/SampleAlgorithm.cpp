@@ -136,8 +136,8 @@ STATUS SampleAlgorithm::Process(const cv::Mat &inFrame, const char *args, JiEven
     // 画ROI区域
     if (mConfig.drawROIArea && !mConfig.currentROIOrigPolygons.empty())
     {
-        drawPolygon(mOutputFrame, mConfig.currentROIOrigPolygons, cv::Scalar(mConfig.roiColor[0], mConfig.roiColor[1], mConfig.roiColor[2]),
-                    mConfig.roiColor[3], cv::LINE_AA, mConfig.roiLineThickness, mConfig.roiFill);
+        // drawPolygon(mOutputFrame, mConfig.currentROIOrigPolygons, cv::Scalar(mConfig.roiColor[0], mConfig.roiColor[1], mConfig.roiColor[2]),
+        //             mConfig.roiColor[3], cv::LINE_AA, mConfig.roiLineThickness, mConfig.roiFill);
     }
     // 判断是否要要报警
     if (validTargets.size() > 0)
@@ -149,26 +149,26 @@ STATUS SampleAlgorithm::Process(const cv::Mat &inFrame, const char *args, JiEven
     {
         if (mConfig.drawResult)
         {
-            std::stringstream ss;
-            ss << (object.label > mConfig.targetRectTextMap[mConfig.language].size() - 1 ? "": mConfig.targetRectTextMap[mConfig.language][object.label]);
-            if (mConfig.drawConfidence)
-            {
-                ss.precision(0);
-                ss << std::fixed << (object.label > mConfig.targetRectTextMap[mConfig.language].size() - 1 ? "" : ": ") << object.score * 100 << "%";
-            }
-            cv::Rect rect = cv::Rect{object.x1, object.y1, object.x2 - object.x1, object.y2 - object.y1};
-            drawRectAndText(mOutputFrame, rect, ss.str(), mConfig.targetRectLineThickness, cv::LINE_AA,
-                            cv::Scalar(mConfig.targetRectColor[0], mConfig.targetRectColor[1], mConfig.targetRectColor[2]), mConfig.targetRectColor[3], mConfig.targetTextHeight,
-                            cv::Scalar(mConfig.textFgColor[0], mConfig.textFgColor[1], mConfig.textFgColor[2]),
-                            cv::Scalar(mConfig.textBgColor[0], mConfig.textBgColor[1], mConfig.textBgColor[2]));
+            // std::stringstream ss;
+            // ss << (object.label > mConfig.targetRectTextMap[mConfig.language].size() - 1 ? "": mConfig.targetRectTextMap[mConfig.language][object.label]);
+            // if (mConfig.drawConfidence)
+            // {
+            //     ss.precision(0);
+            //     ss << std::fixed << (object.label > mConfig.targetRectTextMap[mConfig.language].size() - 1 ? "" : ": ") << object.score * 100 << "%";
+            // }
+            // cv::Rect rect = cv::Rect{object.x1, object.y1, object.x2 - object.x1, object.y2 - object.y1};
+            // drawRectAndText(mOutputFrame, rect, ss.str(), mConfig.targetRectLineThickness, cv::LINE_AA,
+            //                 cv::Scalar(mConfig.targetRectColor[0], mConfig.targetRectColor[1], mConfig.targetRectColor[2]), mConfig.targetRectColor[3], mConfig.targetTextHeight,
+            //                 cv::Scalar(mConfig.textFgColor[0], mConfig.textFgColor[1], mConfig.textFgColor[2]),
+            //                 cv::Scalar(mConfig.textBgColor[0], mConfig.textBgColor[1], mConfig.textBgColor[2]));
         }
     }
 
     if (isNeedAlert && mConfig.drawWarningText)
     {
-        drawText(mOutputFrame, mConfig.warningTextMap[mConfig.language], mConfig.warningTextSize,
-                 cv::Scalar(mConfig.warningTextFg[0], mConfig.warningTextFg[1], mConfig.warningTextFg[2]),
-                 cv::Scalar(mConfig.warningTextBg[0], mConfig.warningTextBg[1], mConfig.warningTextBg[2]), mConfig.warningTextLeftTop);
+        // drawText(mOutputFrame, mConfig.warningTextMap[mConfig.language], mConfig.warningTextSize,
+        //          cv::Scalar(mConfig.warningTextFg[0], mConfig.warningTextFg[1], mConfig.warningTextFg[2]),
+        //          cv::Scalar(mConfig.warningTextBg[0], mConfig.warningTextBg[1], mConfig.warningTextBg[2]), mConfig.warningTextLeftTop);
     }
 
     // 将结果封装成json字符串

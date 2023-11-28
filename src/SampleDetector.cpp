@@ -38,6 +38,7 @@ void SampleDetector::loadOnnx(const std::string strModelName)
     if(builder->platformHasFastFp16()){
         config->setFlag(BuilderFlag::kFP16);
     }
+    
     config->setMaxWorkspaceSize(1ULL << 30);    
     m_CudaEngine = builder->buildEngineWithConfig(*network, *config);    
 
@@ -199,7 +200,7 @@ void SampleDetector::runNms(std::vector<BoxInfo>& objects, float thresh)
     auto iter = objects.begin();
     while( iter != objects.end() )
     {
-        if(iter->score < 0.20)
+        if(iter->score < 0.15)
         {
             iter = objects.erase(iter);
         }

@@ -58,7 +58,7 @@ struct Configuration
     bool drawConfidence = false;                 // 是否画置信度
     // --------------------------------- 通常需要根据需要修改 START -----------------------------------------
     // 3. 算法配置参数
-    AlgoConfig algoConfig = {0.4}; // 默认的算法配置
+    AlgoConfig algoConfig = {0.25}; // 默认的算法配置
     // 4. 与报警信息相关的配置
     std::string language = "en";                             // 所显示文字的默认语言
     int targetRectLineThickness = 4;                         // 目标框粗细
